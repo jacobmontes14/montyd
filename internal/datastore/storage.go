@@ -21,6 +21,11 @@ func (storage *Storage) RemoveKey(key int) {
 	delete(storage.keyStore, key)
 }
 
-func (storage *Storage) GetAllKeys() {
+func (storage *Storage) GetAllKeys() []int {
+	toReturn := []int{}
+	for key := range storage.keyStore {
+		toReturn = append(toReturn, key)
+	}
 
+	return toReturn
 }

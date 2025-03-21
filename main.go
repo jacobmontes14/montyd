@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	storage "github.com/jacobmontes14/montyd/internal/datastore"
+
+	"strconv"
 )
 
 func main() {
@@ -15,4 +17,10 @@ func main() {
 	fmt.Println(dataStore.GetValue(1))
 	fmt.Println(dataStore.GetValue(2))
 	fmt.Println(dataStore.GetValue(3))
+
+	slice := dataStore.GetAllKeys()
+
+	for val := range slice {
+		fmt.Print(strconv.Itoa(val) + " ")
+	}
 }
