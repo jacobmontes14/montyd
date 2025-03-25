@@ -7,6 +7,11 @@ import (
 	storage "github.com/jacobmontes14/montyd/internal/datastore"
 )
 
+type Item struct {
+	Key   int    `json:"id"`
+	Value string `json:"value"`
+}
+
 type Server struct {
 	server     http.Server
 	mux        *http.ServeMux
@@ -40,36 +45,51 @@ func (server *Server) handleData() http.HandlerFunc {
 			server.addToData()(w, r)
 		case http.MethodGet:
 			server.listData()(w, r)
+		case http.MethodDelete:
+			server.removeFromData()(w, r)
 		default:
 			http.Error(w, "Method not valid", http.StatusMethodNotAllowed)
 		}
 	}
 }
 
-func (server *Server) addToData() http.HandlerFunc {
+func (server *Server) removeFromData() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		var val Item
+		if err := json.NewDecoder(r.Body).Decode(&val); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
+		server.data_store.RemoveKey(val.Key)
 
-		server.data_store.AddKeyValue(1, "test")
 		w.Header().Set("Content-Type", "application/json")
-		response := map[string]string{"message": "Data was added!"}
-		json.NewEncoder(w).Encode(response)
+		if err := json.NewEncoder(w).Encode(val); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+}
 
+func (server *Server) addToData() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var val Item
+		if err := json.NewDecoder(r.Body).Decode(&val); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		server.data_store.AddKeyValue(val.Key, val.Value)
+
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(val); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	}
 }
 
 func (server *Server) listData() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodGet {
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-			return
-		}
-
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(server.data_store.GetAllKeys())
 	}
-
 }

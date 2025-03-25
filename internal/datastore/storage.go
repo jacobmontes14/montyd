@@ -1,5 +1,10 @@
 package storage
 
+type KeyValue struct {
+	Key   int
+	Value string
+}
+
 type Storage struct {
 	keyStore map[int]string
 }
@@ -21,10 +26,10 @@ func (storage *Storage) RemoveKey(key int) {
 	delete(storage.keyStore, key)
 }
 
-func (storage *Storage) GetAllKeys() []int {
-	toReturn := []int{}
-	for key := range storage.keyStore {
-		toReturn = append(toReturn, key)
+func (storage *Storage) GetAllKeys() []KeyValue {
+	toReturn := []KeyValue{}
+	for key, val := range storage.keyStore {
+		toReturn = append(toReturn, KeyValue{Key: key, Value: val})
 	}
 
 	return toReturn

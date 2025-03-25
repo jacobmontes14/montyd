@@ -2,3 +2,17 @@ GET http://localhost:8080/data
 
 ###
 POST http://localhost:8080/data
+Content-Type: application/json
+
+{
+    "id": 3,
+    "value": "test"
+}
+
+###
+DELETE http://localhost:8080/data
+Content-Type: application/json
+
+{
+    "id": 3
+}
