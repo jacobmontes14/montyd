@@ -1,10 +1,23 @@
 package main
 
 import (
-	server "github.com/jacobmontes14/montyd/internal/api"
+	"fmt"
+	"strconv"
+
+	sqlite "github.com/jacobmontes14/montyd/internal/sqlite"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
-	s := server.NewServer(":8080")
-	s.Start()
+	db := sqlite.InitializeDb("./datastore")
+	//db.PrepareDb()
+
+	//db.AddToDb("Golang")
+
+	row := db.SelectFromDb(1)
+	var id int
+	var value string
+
+	row.Scan(&id, &value)
+	fmt.Println(strconv.Itoa(id) + ": " + value)
 }
