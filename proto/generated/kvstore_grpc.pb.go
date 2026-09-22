@@ -4,7 +4,7 @@
 // - protoc             v7.36.1
 // source: kvstore.proto
 
-package kvstore
+package generated
 
 import (
 	context "context"

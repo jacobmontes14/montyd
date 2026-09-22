@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package kvstore;
+option go_package = "montyd/proto/generated";
+
+enum Op {
+  OP_UNSPECIFIED = 0;
+  OP_SET = 1;
+  OP_DELETE = 2;
+  OP_NOOP = 3;
+}
+
+message Command {
+  Op op = 1;
+  string key = 2;
+  string value = 3;
+}
+
