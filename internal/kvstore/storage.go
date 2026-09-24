@@ -1,6 +1,6 @@
-// Package storage provides an in-memory key/value store that is modified
+// Package kvstore provides an in-memory key/value store that is modified
 // only by applying encoded commands, so it can be replicated with Raft.
-package storage
+package kvstore
 
 import (
 	"fmt"
@@ -46,11 +46,12 @@ func (kv *KeyStore) set(key string, value string) {
 	kv.data[key] = value
 }
 
-func (kv *KeyStore) Get(key string, value string) {
+func (kv *KeyStore) Get(key string) (string, bool) {
 	kv.mu.RLock()
 	defer kv.mu.RUnlock()
 
-	kv.data[key] = value
+	value, ok := kv.data[key]
+	return value, ok
 }
 
 func (kv *KeyStore) delete(key string) {
