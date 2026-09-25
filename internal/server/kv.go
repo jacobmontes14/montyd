@@ -1,3 +1,4 @@
+// Package server where where the network layer for KVstore lives
 package server
 
 import (
