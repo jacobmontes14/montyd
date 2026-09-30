@@ -4,7 +4,7 @@
 // 	protoc        v7.36.1
 // source: kvstore.proto
 
-package generated
+package kvstorepb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -298,7 +298,7 @@ const file_kvstore_proto_rawDesc = "" +
 	"\aKVStore\x120\n" +
 	"\x03Get\x12\x13.kvstore.GetRequest\x1a\x14.kvstore.GetResponse\x120\n" +
 	"\x03Set\x12\x13.kvstore.SetRequest\x1a\x14.kvstore.SetResponse\x129\n" +
-	"\x06Delete\x12\x16.kvstore.DeleteRequest\x1a\x17.kvstore.DeleteResponseB\x18Z\x16montyd/proto/generatedb\x06proto3"
+	"\x06Delete\x12\x16.kvstore.DeleteRequest\x1a\x17.kvstore.DeleteResponseB;Z9github.com/jacobmontes14/montyd/proto/generated/kvstorepbb\x06proto3"
 
 var (
 	file_kvstore_proto_rawDescOnce sync.Once

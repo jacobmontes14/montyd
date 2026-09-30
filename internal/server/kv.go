@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 
-	pb "github.com/jacobmontes14/montyd/proto/generated"
+	pb "github.com/jacobmontes14/montyd/proto/generated/kvstorepb"
 )
 
 type KV struct {

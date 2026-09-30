@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/jacobmontes14/montyd/internal/kvstore"
-	pb "github.com/jacobmontes14/montyd/proto/generated"
+	pb "github.com/jacobmontes14/montyd/proto/generated/kvstorepb"
 	"github.com/stretchr/testify/assert"
 )
 

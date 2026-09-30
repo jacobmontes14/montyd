@@ -9,7 +9,7 @@ import (
 	"github.com/jacobmontes14/montyd/internal/config"
 	"github.com/jacobmontes14/montyd/internal/kvstore"
 	"github.com/jacobmontes14/montyd/internal/server"
-	pb "github.com/jacobmontes14/montyd/proto/generated"
+	pb "github.com/jacobmontes14/montyd/proto/generated/kvstorepb"
 )
 
 func main() {

@@ -4,7 +4,7 @@
 // 	protoc        v7.36.1
 // source: command.proto
 
-package generated
+package kvstorepb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -147,7 +147,7 @@ const file_command_proto_rawDesc = "" +
 	"\n" +
 	"\x06OP_SET\x10\x01\x12\r\n" +
 	"\tOP_DELETE\x10\x02\x12\v\n" +
-	"\aOP_NOOP\x10\x03B\x18Z\x16montyd/proto/generatedb\x06proto3"
+	"\aOP_NOOP\x10\x03B;Z9github.com/jacobmontes14/montyd/proto/generated/kvstorepbb\x06proto3"
 
 var (
 	file_command_proto_rawDescOnce sync.Once

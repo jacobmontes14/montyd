@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sync"
 
-	pb "github.com/jacobmontes14/montyd/proto/generated"
+	pb "github.com/jacobmontes14/montyd/proto/generated/kvstorepb"
 	"google.golang.org/protobuf/proto"
 )
 
